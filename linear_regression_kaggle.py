@@ -19,11 +19,11 @@ numerical_features = ['Year of Record','Age','Size of City','Wears Glasses','Bod
 categorical_features = ['Gender','Country','Profession','University Degree','Hair Color']
 
 numerical_transformer = Pipeline(steps=[
-    ('Imputer', SimpleImputer(strategy='median')),
+    ('Imputer', SimpleImputer(strategy='median', verbose=1)),
     ('Scaler', StandardScaler())], 
     verbose=True)
 categorical_transformer = Pipeline(steps=[
-    ('Imputer', SimpleImputer(strategy='constant', fill_value='missing')),
+    ('Imputer', SimpleImputer(strategy='constant', fill_value='missing',verbose=1)),
     ('Onehot', OneHotEncoder(handle_unknown='ignore'))],
     verbose=True)
 
@@ -35,7 +35,7 @@ preprocessor = ColumnTransformer(
 
 lr = Pipeline(steps=[
     ('Preprocessor', preprocessor),
-    ('Ridge Regression', Ridge(alpha=0.5,fit_intercept=True,solver='auto'))],verbose=True)
+    ('Ridge Regression', Ridge(alpha=0.25,fit_intercept=True,solver='auto'))],verbose=True)
 
 x_data = dataset_training.drop(['Instance','Income in EUR'], axis=1)
 y_data = dataset_training['Income in EUR']
