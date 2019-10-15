@@ -1,4 +1,4 @@
-ML1920 - Linear Regression Compettion Entry
+CS7CS4 - Linear Regression Compettion Entry
 ===========================================
 
 **Entry for TCD Machine Learning Kaggle Competition**

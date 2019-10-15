@@ -5,9 +5,9 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression, Ridge
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
-from sklearn.feature_selection import RFE
 from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline
+from sklearn.pipeline import Pipeline, TransformerMixin
+from sklearn.neighbors import LocalOutlierFactor
 from sklearn.impute import SimpleImputer
 from sklearn.metrics import mean_squared_error
 
@@ -24,15 +24,14 @@ categorical_features = ['Gender','Country','Profession','University Degree','Hai
 # Transform the respective features
 # Impute and Scale numerical features
 numerical_transformer = Pipeline(steps=[
-    ('Imputer', SimpleImputer(strategy='mean', verbose=1)),
+    ('Imputer', SimpleImputer(strategy='median', verbose=1)),
     ('Scaler', StandardScaler())], 
      verbose=True)
 # Impute and One Hot Encode categorical features
 categorical_transformer = Pipeline(steps=[
     ('Imputer', SimpleImputer(strategy='constant', fill_value='missing',verbose=1)),
-    ('Onehot', OneHotEncoder(handle_unknown='ignore'))],
+    ('Onehot', OneHotEncoder(handle_unknown='ignore',sparse=True))],
     verbose=True)
-
 # Preprocessor operations
 preprocessor = ColumnTransformer(
         transformers=[
@@ -43,8 +42,7 @@ preprocessor = ColumnTransformer(
 # Linear Regression Pipeline: Preprocess -> Ridge Regression
 lr = Pipeline(steps=[
     ('Preprocessor', preprocessor),
-    #('Ridge Regression', Ridge(alpha=0.5,fit_intercept=True)),
-    ('Feature Selection', RFE(Ridge(alpha=0.5,fit_intercept=True),step=1))],
+    ('Ridge Regression', Ridge(alpha=0.5,fit_intercept=True,solver='sag'))],
     verbose=True)
 
 # Create x features and y features
