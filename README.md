@@ -7,7 +7,7 @@ This is a python script which performs a linear regression to predict incomes ba
 
 **Usage**
 
-Provided sklearn-python and numpy-python are present, this script should run on any machine provided data is contained in a folder. Progress through the script is displayed on the terminal, followed by training and testing R^2 scores.
+Provided sklearn-python and numpy-python are present, this script should run on any machine provided data is contained in a folder. Progress through the script is displayed on the terminal, followed by RMSE.
 
 **Issues**
 
@@ -17,6 +17,6 @@ Categorical data also posed somewhat of an issue, although onehot encoding seems
 
 **TODO (or Future Work)**
     
-    * Print more info on scores/RMSE
     * Clean Data Further
+    * Further Investigation on Models
     * Implement CV
