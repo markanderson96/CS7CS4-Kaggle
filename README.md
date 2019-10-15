@@ -19,4 +19,4 @@ Categorical data also posed somewhat of an issue, although onehot encoding seems
     
     * Clean Data Further
     * Further Investigation on Models
-    * Implement CV
+    * Implement CV better
